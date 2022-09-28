@@ -12,14 +12,18 @@ export default class DatosUsuario extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            jsonDatos: ''
+            jsonDatos: []
 
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
-        this.setState({ jsonDatos: this.props.jsonDatosUsuario })
+        console.log('holaa')
+
+        console.log('datos: ', this.props.jsonDatosUsuario['items'])
+
+        this.setState({ jsonDatos: this.props.jsonDatosUsuario.items })
 
     }
 
@@ -27,13 +31,23 @@ export default class DatosUsuario extends React.Component {
         return (
             <Container className='container'>
                 <Col>
-                <Row>
-                Usuario encontrado: {this.state.jsonDatos.login}
-                </Row>
-                
-                <Row>
-                <img src = {this.state.jsonDatos.avatar_url} className='avatar'/>
-                </Row>
+
+                    {this.state.jsonDatos.map(data => (
+
+                        <Row>
+                            <Row>
+                                Usuario encontrado: {data.login}
+                            </Row>
+
+                            <Row>
+                                <img src={data.avatar_url} className='avatar' />
+                            </Row>
+
+                        </Row>
+
+                    ))}
+
+
                 </Col>
 
             </Container>

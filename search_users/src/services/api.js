@@ -6,7 +6,7 @@ export const getInfoByUser = async (user) => {
     };
 
 
-    await fetch(process.env.REACT_APP_URL_USER + user, requestOptions)
+    await fetch(process.env.REACT_APP_URL_USER + user + '+in:user&per_page=100', requestOptions)
         .then((response) => { return response.json() })
         .then((data) => {
             json = data
