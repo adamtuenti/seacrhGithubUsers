@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from './components/home/home'
-import Error from './components/error/error'
+import Home from './components/pages/home/home'
+import Error from './components/pages/error/error'
+import Repositorios from "./components/pages/repositorios/repositorios";
 
 
 const Router = () => {
@@ -11,6 +12,7 @@ const Router = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="*" element={<Error />} />
+        <Route path='/repositorios/:user' element={<Repositorios/>} />
       </Routes>
   );
 };
