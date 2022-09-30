@@ -1,8 +1,12 @@
-.imagenGithub{
-    width: 125px;
-    height: 125px;
+@media (max-width: 1000px) {
+    #title{
+        font-size: 25px !important;
+    }
+
 
 }
+
+
 
 .container{
     margin-top: 35px;

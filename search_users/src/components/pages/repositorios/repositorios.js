@@ -1,64 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Container, Col, Row, Table, Pagination, FormGroup, Form } from "react-bootstrap";
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
+import { Container, Col, Row, Card } from "react-bootstrap";
 
-import DatosUsuario from '../datosUsuario/datosUsuario'
-import { getRepositoriesByUser } from "../../../services/api";
-
-import {useParams} from "react-router-dom"
+import { GoPerson } from 'react-icons/go'
 
 
 
 
 
 
+export default function RepositoriosHook({jsonDatosRepo}) {
 
-
-
-
-
-export default function Repositorios(){
-
-    const {id} = useParams()
-    const { repositorios, setRepositorios } = useState()
-
-    /* constructor(props) {
-        super(props);
-        this.state = {
-            usuario: 'adamtuenti',
-            mostrarDatos: false,
-            repositorios: []
-
-        }
-    } */
+    
 
     useEffect(() => {
-        console.log(id)
+        console.log('aca');
+        console.log(jsonDatosRepo)
 
-        getRepositoriesByUser('adamtuenti').then((data) => {
+        //setJsonDatos(props.jsonDatosRepo['items'])
 
-            
-                    /* this.setState({ mostrarDatos: true, repositorios: data }) */
-                    setRepositorios(data)
-
-        })
-    }
-    )
+})
 
 
-        
+
+
+
+
+
         return (
-            <Container className='us'>
+            <Container className='container'>
                 <Row>
-                    <p style = {{fontSize: '35px', fontWeight: 'bold'}}>Repositorios de Usuario</p>
+
+
+
+                    {jsonDatosRepo.map((data, index) => (
+
+
+                        <Col lg={3} md={4} xs={10} style={{ marginTop: '15px', marginLeft: 'auto', marginRight: 'auto' }} >
+
+                            <Card key = {index}>
+                            <Card.Header>{data.name.length < 25 ? data.name : data.name.slice(0,25) + '...'}</Card.Header>
+                            <Card.Img variant="top" src={data['owner'].avatar_url === '' ? 'https://cdn-icons-png.flaticon.com/512/219/219983.png' : data['owner'].avatar_url}/>
+                                <Card.Body>
+                                    <p><GoPerson style = {{marginRight: '5.5px'}}/>{data['owner'].login}</p>
+                                </Card.Body>
+                            </Card>
+
+                        </Col>
+
+
+
+                    ))}
+
+
                 </Row>
 
 
 
-                    {repositorios.map(data =>(
-                        <p>{data.name}</p>
-                    ))}
+
+
+
+
 
             </Container>
         )

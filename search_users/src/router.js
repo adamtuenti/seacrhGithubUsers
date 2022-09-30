@@ -1,8 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from './components/pages/home/home'
+import SearchBarUser from './components/pages/usuarios/searchBar'
 import Error from './components/pages/error/error'
-import Repositorios from "./components/pages/repositorios/repositorios";
+import RepositoriosUsuario from "./components/pages/usuarios/usuarioRepositorios";
+import UsuarioDetalle from "./components/pages/usuarios/usuarioDetalle"
+import SearchBarRepo from "./components/pages/repositorios/searchBar"
 
 
 const Router = () => {
@@ -10,9 +12,12 @@ const Router = () => {
 
   return (
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<SearchBarUser />} />
+        <Route exact path="/usuarios" element={<SearchBarUser />} />
         <Route path="*" element={<Error />} />
-        <Route path='/repositorios/:user' element={<Repositorios/>} />
+        <Route path='/repositorios/:user' element={<RepositoriosUsuario/>} />
+        <Route path='/repositorios' element={<SearchBarRepo/>} />
+        <Route path='/perfil/:user' element={<UsuarioDetalle/>} />
       </Routes>
   );
 };
