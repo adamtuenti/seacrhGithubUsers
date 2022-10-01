@@ -1,0 +1,24 @@
+@media (max-width: 1000px) {
+    #imageTia{
+        width: 45px !important;
+    }
+
+}
+  
+  
+.navbar-red {
+    background-color: #95c57c;
+    position: fixed;
+/*   justify-content: flex-start; */
+/*   padding: 25px; */
+}
+
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -100% !important;
+    margin-top: 0.125rem;
+}
+
+
+@import "~bootstrap/scss/bootstrap.scss";
+  
