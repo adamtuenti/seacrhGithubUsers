@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
-import styled from 'styled-components'
 import { useParams } from "react-router-dom"
-import { DatatableWrapper, Filter, Pagination, PaginationOptions, TableBody, TableHeader } from "react-bs-datatable";
+import { Link } from "react-router-dom";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { DatatableWrapper, Pagination, PaginationOptions, TableBody, TableHeader } from "react-bs-datatable";
 import { getRepositoriesByUser } from "../../../services/api";
-
-
-
+import useUser from "../../../hooks/useUser"
 
 export default function RepositoriosUsuario(){
 
     const [ repositorios, setRepositorios ] = useState([])
+    const [loading, setLoading] = useState(true)
     const {user} = useParams()
+    const { Title, ImageNoRepo } = useUser()
     const STORY_HEADERS = [
-
         {
             prop: "name",
             title: "Nombre",
@@ -30,40 +30,31 @@ export default function RepositoriosUsuario(){
     ];
 
 
-
     useEffect(() => {
-
         if(repositorios.length === 0){
-
             getRepositoriesByUser(user).then((data) => {
 
-                        /* this.setState({ mostrarDatos: true, repositorios: data }) */
+                setTimeout(() => {
+                    setLoading(false)
+                }, 750);
                 setRepositorios(data)
-
             })
         }
     })
 
-    const Title = styled.p`
-        font-size: 35px;
-        text-align: center;
-        font-weight: bold;
-        @media (max-width: 1000px) {
-            font-size: 22.5px !important
         
-        }
-    `;
+    return (
+        <Container id='container'>
+            <Row>
+                <Title>Repositorios de {user}</Title>
+            </Row>
+            <div id = 'divIcon'>
+                <Link to = {`/perfil/${user}`}>
+                    <BsFillArrowLeftCircleFill size = '42' style = {{textAlign: 'left'}}/>
+                </Link>
+            </div>
 
-        
-        return (
-            <Container id='container'>
-                <Row>
-                    <Title>Repositorios de {user}</Title>
-                </Row>
-
-
-
-
+            {!loading &&
                 <DatatableWrapper
                     body={repositorios}
                     headers={STORY_HEADERS}
@@ -74,17 +65,9 @@ export default function RepositoriosUsuario(){
                         }
                     }}
                 >
-
                     <Row className="mb-4 p-2">
                         <Col
-                            xs={8}
-                            lg={4}
-                            className="d-flex flex-col justify-content-end align-items-end"
-                        >
-                            <Filter />
-                        </Col>
-                        <Col
-                            xs={8}
+                            xs={5}
                             sm={6}
                             lg={4}
                             className="d-flex flex-col justify-content-lg-start align-items-center justify-content-sm-start mb-2 mb-sm-0"
@@ -92,7 +75,7 @@ export default function RepositoriosUsuario(){
                             <PaginationOptions />
                         </Col>
                         <Col
-                            xs={6}
+                            xs={9}
                             sm={6}
                             lg={4}
                             className="d-flex flex-col justify-content-center align-items-center"
@@ -105,10 +88,15 @@ export default function RepositoriosUsuario(){
                         <TableBody />
                     </Table>
                 </DatatableWrapper>
+            }
+            {loading &&
+                <div>
+                    <ImageNoRepo src = 'https://octodex.github.com/images/daftpunktocat-thomas.gif' className = 'img-fluid'/>
+                </div>
+            }
 
-            </Container>
-        )
-
+        </Container>
+    )
 
 
 }

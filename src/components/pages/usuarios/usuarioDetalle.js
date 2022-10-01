@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Card } from "react-bootstrap";
 import { GoLocation, GoRepo, GoOrganization } from "react-icons/go";
 import styled from 'styled-components'
-
 import { Link } from "react-router-dom";
-
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { getUserDetail } from "../../../services/api";
 import { useParams } from "react-router-dom"
+import useUser from "../../../hooks/useUser"
 import '../../styles/styles.scss'
 
 
-
 export default function UsuarioDetalle(){
-    
     const [ datosUsuario, setDatosUsuario ] = useState('')
     const {user} = useParams()
+    const { Title } = useUser()
     
     useEffect(() => {
         if(datosUsuario === ''){
@@ -25,21 +24,11 @@ export default function UsuarioDetalle(){
         }
     })
 
-    const Title = styled.p`
-        font-size: 35px;
-        text-align: center;
-        font-weight: bold;
-        @media (max-width: 1000px) {
-            font-size: 22.5px !important
-        
-        }
-    `;
-
     const TextDetail = styled.p`
         font-size: 17.5px;
         text-align: center;
         @media (max-width: 1000px) {
-            font-size: 13.5px !important
+            font-size: 15.5px !important
         
         }
     `;
@@ -48,7 +37,7 @@ export default function UsuarioDetalle(){
         font-size: 17.5px;
         text-align: center;
         @media (max-width: 1000px) {
-            font-size: 13.5px !important
+            font-size: 15.5px !important
         
         }
     `;
@@ -60,7 +49,11 @@ export default function UsuarioDetalle(){
             <Row>
                 <Title>{datosUsuario.name === null ? datosUsuario.login : datosUsuario.name}</Title>
             </Row>
-
+            <div id = 'divIcon'>
+                <Link to = {`/usuarios`}>
+                    <BsFillArrowLeftCircleFill size = '42' style = {{textAlign: 'left'}}/>
+                </Link>
+            </div>
             <Card id = 'cardDetalle' style = {{marginLeft: 'auto', marginRight: 'auto', marginTop: '25px', padding: '35px', textAlign: 'center', borderRadius: '15px', width: '450px'}}>
                 <Card.Img id = 'avatarDetalle' variant="top" src={datosUsuario.avatar_url} style = {{borderRadius: '25px', width: '175px', height: '175px', textAlign: 'center', marginRight: 'auto', marginLeft: 'auto'}}/>
                 <Card.Body>

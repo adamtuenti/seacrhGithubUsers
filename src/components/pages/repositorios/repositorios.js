@@ -1,14 +1,11 @@
 import React from "react";
 import { Container, Col, Row, Card } from "react-bootstrap";
-
 import { GoPerson } from 'react-icons/go'
 import '../../styles/styles.scss'
 
 
 
-
 export default function RepositoriosHook({jsonDatosRepo}) {
-
         return (
             <Container id='container'>
                 <Row>
@@ -28,7 +25,5 @@ export default function RepositoriosHook({jsonDatosRepo}) {
                 </Row>
             </Container>
         )
-
-
 
 }

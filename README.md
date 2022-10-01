@@ -4,7 +4,7 @@
 
 - React Js
 
-## Levantar el proyecto
+# Levantar el proyecto
 
 ## Crear archivo .env en la carpeta raiz del proyecto
 
