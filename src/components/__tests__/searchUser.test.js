@@ -1,19 +1,12 @@
 import React from "react"
 import { render, screen, fireEvent, waitFor, within } from "@testing-library/react"
 import SearchBarUser from "../pages/usuarios/searchBar"
+import UsuariosHook from "../pages/usuarios/usuarios"
 
+import TestRenderer from 'react-test-renderer';
+const testRenderer = TestRenderer.create(<SearchBarUser />);
 
-
-const setUp = (props) => {
-    return <SearchBarUser />;
-  };
-
-
-describe("Search User Page", () => {
-    it("se muestra la barra de búsqueda de usuario", async () => {
-        setUp();
-        await waitFor(() => {
-            within(screen.getByText('Búsqueda de Usuarios')).toBeInTheDocument()
-        })
-    })
+test('Usarios result', () => {
+    render(<SearchBarUser />);
+    screen.debug()
 })

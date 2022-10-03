@@ -65,6 +65,13 @@ export default function RepositoriosUsuario(){
                         }
                     }}
                 >
+
+                    <Table>
+                        <TableHeader />
+                        <TableBody />
+                    </Table>
+
+
                     <Row className="mb-4 p-2">
                         <Col
                             xs={5}
@@ -83,10 +90,7 @@ export default function RepositoriosUsuario(){
                             <Pagination />
                         </Col>
                     </Row>
-                    <Table>
-                        <TableHeader />
-                        <TableBody />
-                    </Table>
+                    
                 </DatatableWrapper>
             }
             {loading &&

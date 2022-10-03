@@ -54,14 +54,14 @@ export default function UsuarioDetalle(){
                     <BsFillArrowLeftCircleFill size = '42' style = {{textAlign: 'left'}}/>
                 </Link>
             </div>
-            <Card id = 'cardDetalle' style = {{marginLeft: 'auto', marginRight: 'auto', marginTop: '25px', padding: '35px', textAlign: 'center', borderRadius: '15px', width: '450px'}}>
+            <Card id = 'cardDetalle' style = {{marginLeft: 'auto', marginRight: 'auto', marginTop: '25px', padding: '25px', textAlign: 'center', borderRadius: '15px', width: '450px'}}>
                 <Card.Img id = 'avatarDetalle' variant="top" src={datosUsuario.avatar_url} style = {{borderRadius: '25px', width: '175px', height: '175px', textAlign: 'center', marginRight: 'auto', marginLeft: 'auto'}}/>
                 <Card.Body>
                     <Card.Title>{datosUsuario.login}</Card.Title>
                     <TextDetail><GoLocation style = {{marginRight: '5.5px'}}/>{datosUsuario.location === null ? 'Desconocida' : datosUsuario.location}</TextDetail>
-                    <TextDetail><GoRepo style = {{marginRight: '5.5px'}}/>{datosUsuario.public_repos}</TextDetail>
-                    <TextDetail><GoOrganization style = {{marginRight: '5.5px'}}/> {datosUsuario.followers} followers</TextDetail>
-                    <TextDetail><GoOrganization style = {{marginRight: '5.5px'}}/> {datosUsuario.following} following</TextDetail>
+                    <TextDetail><GoRepo style = {{marginRight: '5.5px'}}/>{datosUsuario.public_repos} repositorios</TextDetail>
+                    <TextDetail><GoOrganization style = {{marginRight: '5.5px'}}/> {datosUsuario.followers} seguidores</TextDetail>
+                    <TextDetail><GoOrganization style = {{marginRight: '5.5px'}}/> {datosUsuario.following} seguidos</TextDetail>
                     <Link to = {`/repositorios/${datosUsuario.login}`}><LinkRepo href = ''>Ver repositorios</LinkRepo></Link>
                 </Card.Body>
             </Card>
